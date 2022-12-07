@@ -28,10 +28,13 @@ function qs_theme_scripts() {
 	wp_enqueue_script( 'jquery' );
 
 	wp_register_script( 'swiper', THEME . '/assets/js/swiper.min.js', array( 'jquery' ), THEME_VER, true );
-	wp_register_script( 'scripts', THEME . '/assets/js/scripts.js', array( 'jquery' ), THEME_VER, true );
-	wp_register_script( 'a11y', THEME . '/assets/js/a11y.js', array( 'jquery' ), THEME_VER, true );
-
 	wp_enqueue_script( 'swiper' );
+
+	wp_register_script( 'jquery.marquee', THEME . '/assets/js/jquery.marquee.min.js', array( 'jquery' ), THEME_VER, true );
+	wp_enqueue_script( 'jquery.marquee' );
+
+	wp_register_script( 'scripts', THEME . '/assets/js/scripts.js', array( 'jquery' ), THEME_VER . '-v-' . time(), true );
+	wp_register_script( 'a11y', THEME . '/assets/js/a11y.js', array( 'jquery' ), THEME_VER, true );
 
 	$site_settings = array(
 		'home_url'  => get_home_url(),
