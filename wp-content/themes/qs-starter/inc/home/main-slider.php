@@ -9,7 +9,7 @@ if( ! $home_slider ) {
 }
 ?>
 
-<section class="section home-main-slider">
+<section class="section home-main-slider" data-total="<?php echo esc_html( count($home_slider) ); ?>">
 
 	<div dir="rtl" class="swiper">
 
@@ -44,13 +44,7 @@ if( ! $home_slider ) {
 			<?php endforeach; ?>
 		</div>
 
-		<!-- If we need pagination -->
 		<div class="swiper-pagination"></div>
-
-		<?php /* If we need navigation buttons
-		<div class="swiper-button-prev"></div>
-		<div class="swiper-button-next"></div>
-		*/ ?>
 
 	</div>
 </section>

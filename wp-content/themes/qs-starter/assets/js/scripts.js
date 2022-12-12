@@ -24,6 +24,7 @@ jQuery(document).ready(function () {
 	});
 
 	init_homepage_main_slider();
+	init_home_news_slider();
 	init_news_bar();
 });
 
@@ -48,16 +49,46 @@ function init_news_bar() {
 	}
 }
 
+function init_home_news_slider() {
+	var slider_autoplay = false;
+	var slider_loop = true;
+	if (jQuery("#home-news-section .swiper").attr("data-total") > 4) {
+		slider_autoplay = {
+			delay: 5000,
+		};
+		slider_loop = false;
+	}
+
+	const home_news_slider = new Swiper("#home-news-section .swiper", {
+		direction: "horizontal",
+		loop: slider_loop,
+		autoplay: slider_autoplay,
+		slidesPerView: 4,
+
+		// // Navigation arrows
+		navigation: {
+			nextEl: "#home-news-section .swiper-button-next",
+			prevEl: "#home-news-section .swiper-button-prev",
+		},
+	});
+}
+
 function init_homepage_main_slider() {
 	console.log("init home main slider");
 
-	const homepage_main_slider = new Swiper(".home-main-slider .swiper", {
-		// Optional parameters
-		direction: "horizontal",
-		loop: true,
-		autoplay: {
+	var slider_autoplay = false;
+	var slider_loop = true;
+	if (jQuery(".home-main-slider").attr("data-total") > 1) {
+		slider_autoplay = {
 			delay: 5000,
-		},
+		};
+		slider_loop = false;
+	}
+
+	const homepage_main_slider = new Swiper(".home-main-slider .swiper", {
+		direction: "horizontal",
+		loop: slider_loop,
+		autoplay: slider_autoplay,
 		// If we need pagination
 		pagination: {
 			el: ".swiper-pagination",
