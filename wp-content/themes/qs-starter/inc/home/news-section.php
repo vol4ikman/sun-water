@@ -10,6 +10,12 @@ $news_to_display = get_field( 'news_to_display' );
 if( ! $news_to_display ) {
 	return;
 }
+$news_args = array(
+	'post__in' => $news_to_display,
+	'posts_per_page' => -1,
+	'orderby' => 'post__in'
+);
+$news = new WP_Query( $news_args );
 ?>
 
 <section class="section" id="home-news-section">
@@ -22,81 +28,22 @@ if( ! $news_to_display ) {
 			<div class="news-section-slider">
 				<div class="swiper" data-total="5">
 					<div class="swiper-wrapper">
-						
-						<div class="swiper-slide">
-							<div class="news-box">
-								<a href="#" class="content-wrapper">
-									<div class="news-box__content">
-										<div class="title">פרוייקטים אחרונים</div>
-										<div class="desc">תאגיד מי שמש משקיע רבות בשיקום ופיתוח תשתיות בעיר בית שמש...</div>
-										<div class="permalink">רקא עוד</div>
-									</div>
-									<div class="image">
-										<img src="<?php echo THEME; ?>/images/news-thumb.png">
-									</div>
-								</a>
+						<?php while( $news->have_posts() ) : $news->the_post(); ?>
+							<div class="swiper-slide">
+								<div class="news-box">
+									<a href="<?php the_permalink(); ?>" class="content-wrapper">
+										<div class="news-box__content">
+											<div class="title"><?php the_title(); ?></div>
+											<div class="desc"><?php the_excerpt(); ?></div>
+											<div class="permalink">רקא עוד</div>
+										</div>
+										<div class="image">
+											<?php the_post_thumbnail( 'home-news' ); ?>
+										</div>
+									</a>
+								</div>
 							</div>
-						</div>
-
-						<div class="swiper-slide">
-							<div class="news-box">
-								<a href="#" class="content-wrapper">
-									<div class="news-box__content">
-										<div class="title">פרוייקטים אחרונים</div>
-										<div class="desc">תאגיד מי שמש משקיע רבות בשיקום ופיתוח תשתיות בעיר בית שמש...</div>
-										<div class="permalink">רקא עוד</div>
-									</div>
-									<div class="image">
-										<img src="<?php echo THEME; ?>/images/news-thumb.png">
-									</div>
-								</a>
-							</div>
-						</div>
-
-						<div class="swiper-slide">
-							<div class="news-box">
-								<a href="#" class="content-wrapper">
-									<div class="news-box__content">
-										<div class="title">פרוייקטים אחרונים</div>
-										<div class="desc">תאגיד מי שמש משקיע רבות בשיקום ופיתוח תשתיות בעיר בית שמש...</div>
-										<div class="permalink">רקא עוד</div>
-									</div>
-									<div class="image">
-										<img src="<?php echo THEME; ?>/images/news-thumb.png">
-									</div>
-								</a>
-							</div>
-						</div>
-
-						<div class="swiper-slide">
-							<div class="news-box">
-								<a href="#" class="content-wrapper">
-									<div class="news-box__content">
-										<div class="title">פרוייקטים אחרונים</div>
-										<div class="desc">תאגיד מי שמש משקיע רבות בשיקום ופיתוח תשתיות בעיר בית שמש...</div>
-										<div class="permalink">רקא עוד</div>
-									</div>
-									<div class="image">
-										<img src="<?php echo THEME; ?>/images/news-thumb.png">
-									</div>
-								</a>
-							</div>
-						</div>
-
-						<div class="swiper-slide">
-							<div class="news-box">
-								<a href="#" class="content-wrapper">
-									<div class="news-box__content">
-										<div class="title">פרוייקטים אחרונים</div>
-										<div class="desc">תאגיד מי שמש משקיע רבות בשיקום ופיתוח תשתיות בעיר בית שמש...</div>
-										<div class="permalink">רקא עוד</div>
-									</div>
-									<div class="image">
-										<img src="<?php echo THEME; ?>/images/news-thumb.png">
-									</div>
-								</a>
-							</div>
-						</div>
+						<?php endwhile; wp_reset_postdata(); ?>
 
 					</div>
 				</div>
