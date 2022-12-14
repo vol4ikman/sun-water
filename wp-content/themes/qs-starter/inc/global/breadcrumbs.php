@@ -7,6 +7,8 @@
 
 ?>
 
-<div class="breadcrumbs-wrap">
-
-</div>
+<?php if ( function_exists('yoast_breadcrumb') ) : ?>
+	<div class="breadcrumbs-wrap">
+		<?php yoast_breadcrumb( '<div id="breadcrumbs">','</div>' ); ?>
+	</div>
+<?php endif; ?>

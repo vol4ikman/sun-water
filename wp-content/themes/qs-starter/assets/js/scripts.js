@@ -26,6 +26,37 @@ jQuery(document).ready(function () {
 	init_homepage_main_slider();
 	init_home_news_slider();
 	init_news_bar();
+
+	jQuery(".video-wrapper a").click(function (e) {
+		e.preventDefault();
+		jQuery(this).toggleClass("active");
+	});
+
+	if (jQuery(".contact-form").length) {
+		jQuery("input, textarea").focus(function () {
+			jQuery(this).parents(".form-group").addClass("focused");
+		});
+
+		jQuery("input, textarea").blur(function () {
+			var inputValue = jQuery(this).val();
+			if (inputValue == "") {
+				jQuery(this).removeClass("filled");
+				jQuery(this).parents(".form-group").removeClass("focused");
+			} else {
+				jQuery(this).addClass("filled");
+			}
+		});
+	}
+
+	if (jQuery(".upload-file-button").length) {
+		jQuery(".upload-file-button").click(function (e) {
+			e.preventDefault();
+			jQuery(this)
+				.parents(".upload-file")
+				.find('input[type="file"]')
+				.click();
+		});
+	}
 });
 
 function init_news_bar() {

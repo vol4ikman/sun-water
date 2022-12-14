@@ -24,6 +24,7 @@ if ( function_exists( 'add_theme_support' ) ) {
 	add_image_size( 'medium', 450, '', true );
 	add_image_size( 'small', 250, '', true );
 	add_image_size( 'home-news', 372, 287, true );
+	add_image_size( 'contact-video-cover', 568, 322, true );
 	// Theme Support fot yoast.
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'automatic-feed-links' );
