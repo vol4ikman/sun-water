@@ -57,6 +57,12 @@ jQuery(document).ready(function () {
 				.click();
 		});
 	}
+
+	jQuery(".faq-list li .question").click(function (e) {
+		e.preventDefault();
+		var parent_li = jQuery(this).parent("li");
+		parent_li.toggleClass("active");
+	});
 });
 
 function init_news_bar() {
