@@ -7,24 +7,23 @@
 
 get_header(); ?>
 
-	<section role="main">
-		<h1>
-		<?php
-			echo sprintf( __( '%s Search Results for ', 'html5blank' ), esc_html( $wp_query->found_posts ) );
-			echo get_search_query();
-		?>
-		</h1>
+<section class="section" id="search-results-page">
+	<div class="container">
+		<div class="meta">
+			<div class="title">תוצאות חיפוש: <span><?php echo get_search_query() ;?></span></div>
+			<div class="subtitle">כ-<?php echo esc_html( $wp_query->found_posts ); ?> תוצאות חיפוש עבור "<?php echo get_search_query() ;?>"</div>
+		</div>
 
-		<?php
-		while ( have_posts() ) :
-			the_post();
-			?>
-			<article>
-				<h3><?php the_title(); ?></h3>
-			</article>
-		<?php endwhile; ?>
-	</section>
+		<div class="search-form-wrapper">
+			<?php get_search_form(); ?>
+		</div>
 
-<?php get_sidebar(); ?>
+		<div class="search-results-posts">
+			<?php while( have_posts() ) :  the_post(); ?>
+				<?php get_template_part( 'inc/loop/search', 'result' ); ?>
+			<?php endwhile; wp_reset_postdata(); ?>
+		</div>
+	</div>
+</section>
 
 <?php get_footer(); ?>

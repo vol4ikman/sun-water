@@ -9,7 +9,7 @@ jQuery(document).ready(function () {
 	// accessibility handle browser zoom level
 	jQuery(window).resize(function () {
 		var browserZoomLevel = Math.round(window.devicePixelRatio * 100);
-		console.log(browserZoomLevel);
+		//console.log(browserZoomLevel);
 		if (browserZoomLevel < 401) {
 			jQuery("body").removeClass(
 				"zoom-level-90 zoom-level-100 zoom-level-110 zoom-level-120 zoom-level-130 zoom-level-140 zoom-level-150 zoom-level-160 zoom-level-170 zoom-level-180 zoom-level-190 zoom-level-200 zoom-level-210 zoom-level-220 zoom-level-230 zoom-level-240 zoom-level-250 zoom-level-260 zoom-level-270 zoom-level-280 zoom-level-290 zoom-level-300 zoom-level-310 zoom-level-320 zoom-level-330 zoom-level-340 zoom-level-350 zoom-level-360 zoom-level-370 zoom-level-380 zoom-level-390 zoom-level-400"
@@ -22,10 +22,6 @@ jQuery(document).ready(function () {
 		e.preventDefault();
 		jQuery("body").toggleClass("contrast-mode");
 	});
-
-	init_homepage_main_slider();
-	init_home_news_slider();
-	init_news_bar();
 
 	jQuery(".video-wrapper a").click(function (e) {
 		e.preventDefault();
@@ -63,12 +59,55 @@ jQuery(document).ready(function () {
 		var parent_li = jQuery(this).parent("li");
 		parent_li.toggleClass("active");
 	});
+
+	init_homepage_main_slider();
+	init_home_news_slider();
+	init_news_bar();
+	init_builder_gallery_slider();
+
+	jQuery(".popup-youtube").magnificPopup({
+		type: "iframe",
+		mainClass: "mfp-fade",
+		removalDelay: 160,
+		preloader: false,
+		fixedContentPos: false,
+	});
+
+	jQuery(".action-buttons .search-button").click(function (e) {
+		e.preventDefault();
+		jQuery(".header-search-bar").toggleClass("active");
+	});
+	jQuery(".close-search-bar").click(function (e) {
+		e.preventDefault();
+		jQuery(".header-search-bar").removeClass("active");
+	});
 });
+
+function init_builder_gallery_slider() {
+	if (jQuery(".builder-gallery-carousel").length) {
+		jQuery(".builder-gallery-carousel").each(function (key, val) {
+			new Swiper(val, {
+				slidesPerView: 2,
+				direction: "horizontal",
+				loop: false,
+				autoplay: false,
+				// autoplay: {
+				// 	delay: 5000,
+				// },
+				// // Navigation arrows
+				navigation: {
+					nextEl: jQuery(val).find(".swiper-button-next"),
+					prevEl: jQuery(val).find(".swiper-button-prev"),
+				},
+			});
+		});
+	}
+}
 
 function init_news_bar() {
 	if (jQuery("#news-bar").length && jQuery(".twitter-scroll").length) {
 		var news_bar = jQuery(".twitter-scroll").marquee({
-			duration: 15000,
+			duration: 20000,
 			pauseOnHover: false,
 			direction: "right",
 		});

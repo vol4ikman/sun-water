@@ -10,12 +10,21 @@
  */
 function qs_theme_styles() {
 
-	wp_register_style( 'swiper', THEME . '/assets/scss/swiper.css', array(), THEME_VER . '-v-' . time(), 'all' ); wp_enqueue_style( 'swiper' );
+	wp_register_style( 'magnific', THEME . '/assets/scss/magnific-popup.css', array(), THEME_VER . '-v-' . time(), 'all' ); 
+	wp_enqueue_style( 'magnific' );
 
-	wp_register_style( 'main-style', THEME . '/assets/scss/main-style.css', array(), THEME_VER . '-v-' . time(), 'all' ); wp_enqueue_style( 'main-style' );
-	wp_register_style( 'responsive', THEME . '/assets/scss/responsive.css', array(), THEME_VER . '-v-' . time(), 'all' ); wp_enqueue_style( 'responsive' );
+	wp_register_style( 'swiper', THEME . '/assets/scss/swiper.css', array(), THEME_VER . '-v-' . time(), 'all' ); 
+	wp_enqueue_style( 'swiper' );
+
+	wp_register_style( 'main-style', THEME . '/assets/scss/main-style.css', array(), THEME_VER . '-v-' . time(), 'all' ); 
+	wp_enqueue_style( 'main-style' );
+
+	wp_register_style( 'responsive', THEME . '/assets/scss/responsive.css', array(), THEME_VER . '-v-' . time(), 'all' ); 
+	wp_enqueue_style( 'responsive' );
+
 	// Accessibility style.
-	wp_register_style( 'a11y', THEME . '/assets/scss/a11y.css', array(), THEME_VER, 'all' ); wp_enqueue_style( 'a11y' );
+	wp_register_style( 'a11y', THEME . '/assets/scss/a11y.css', array(), THEME_VER, 'all' ); 
+	wp_enqueue_style( 'a11y' );
 	
 }
 /**
@@ -30,10 +39,13 @@ function qs_theme_scripts() {
 	wp_register_script( 'swiper', THEME . '/assets/js/swiper.min.js', array( 'jquery' ), THEME_VER, true );
 	wp_enqueue_script( 'swiper' );
 
+	wp_register_script( 'magnific', THEME . '/assets/js/magnific.js', array( 'jquery' ), THEME_VER, true );
+	wp_enqueue_script( 'magnific' );
+
 	wp_register_script( 'jquery.marquee', THEME . '/assets/js/jquery.marquee.min.js', array( 'jquery' ), THEME_VER, true );
 	wp_enqueue_script( 'jquery.marquee' );
 
-	wp_register_script( 'scripts', THEME . '/assets/js/scripts.js', array( 'jquery' ), THEME_VER . '-v-' . time(), true );
+	wp_register_script( 'scripts', THEME . '/assets/js/scripts.js', array( 'jquery' ), THEME_VER, true );
 	wp_register_script( 'a11y', THEME . '/assets/js/a11y.js', array( 'jquery' ), THEME_VER, true );
 
 	$site_settings = array(

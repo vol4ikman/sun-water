@@ -55,6 +55,8 @@ $logo = get_field( 'logo', 'options' );
 
 	<header class="header clear" role="banner">
 
+		<?php get_template_part('inc/header/search', 'bar' ); ?>
+
 		<div class="header-inner">
 			<?php if ( $logo ) : ?>
 				<div class="logo-wrapper">

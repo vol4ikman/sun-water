@@ -28,6 +28,8 @@ $facebook_url = get_field( 'facebook_url', 'option' );
 
 ?>
 
+<?php get_template_part('inc/footer/feedback', 'module'); ?>
+
 <footer class="footer" role="contentinfo">
 
 	<div class="container">
@@ -81,6 +83,8 @@ $facebook_url = get_field( 'facebook_url', 'option' );
 </footer>
 
 </div>
+
+<?php get_template_part( 'inc/global/floating', 'form' ); ?>
 
 <?php wp_footer(); ?>
 </body>
