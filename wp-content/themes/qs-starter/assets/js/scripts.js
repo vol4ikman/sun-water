@@ -81,6 +81,11 @@ jQuery(document).ready(function () {
 		e.preventDefault();
 		jQuery(".header-search-bar").removeClass("active");
 	});
+
+	jQuery(".main-cb-button").click(function (e) {
+		e.preventDefault();
+		jQuery(".floating-form-wrapper").toggleClass("active");
+	});
 });
 
 function init_builder_gallery_slider() {

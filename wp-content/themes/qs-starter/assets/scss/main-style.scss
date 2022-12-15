@@ -2047,8 +2047,45 @@ footer.footer {
 .floating-form-wrapper {
 	position: fixed;
 	left: 0;
-	top: 55vh;
+	bottom: 20px;
 	z-index: 10;
+	width: 100px;
+	@include flexbox();
+
+	&.active {
+		box-shadow: 0px 0px 40px rgba(7, 15, 68, 0.15);
+
+		.action-buttons {
+			height: auto;
+		}
+	}
+
+	.action-buttons {
+		height: 0px;
+		overflow: hidden;
+		background: $white;
+		width: 100px;
+		@include flexbox();
+		flex-wrap: wrap;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 0;
+		-webkit-border-top-right-radius: 10px;
+		-moz-border-radius-topright: 10px;
+		border-top-right-radius: 10px;
+
+		a {
+			padding: 15px 0;
+			width: 100%;
+			text-align: center;
+			@include trans(250ms);
+
+			&:hover {
+				background-color: #FDD207;
+			}
+		}
+	}
 
 	.main-cb-button {
 		cursor: pointer;
