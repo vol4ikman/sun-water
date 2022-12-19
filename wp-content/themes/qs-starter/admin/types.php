@@ -273,3 +273,252 @@ function sun_display_callback( $post ) {
 	<p>ענו "לא" : <?php echo count($total_no_feedbacks); ?></p>
 	<?php
 }
+
+if ( ! function_exists('tender_post_type') ) {
+
+	// Register Custom Post Type
+	function tender_post_type() {
+	
+		$labels = array(
+			'name'                  => _x( 'מכרזים', 'Post Type General Name', 'sun' ),
+			'singular_name'         => _x( 'מכרזים', 'Post Type Singular Name', 'sun' ),
+			'menu_name'             => __( 'מכרזים', 'sun' ),
+			'name_admin_bar'        => __( 'מכרזים', 'sun' ),
+			'archives'              => __( 'Item Archives', 'sun' ),
+			'attributes'            => __( 'Item Attributes', 'sun' ),
+			'parent_item_colon'     => __( 'Parent Item:', 'sun' ),
+			'all_items'             => __( 'All Items', 'sun' ),
+			'add_new_item'          => __( 'Add New Item', 'sun' ),
+			'add_new'               => __( 'Add New', 'sun' ),
+			'new_item'              => __( 'New Item', 'sun' ),
+			'edit_item'             => __( 'Edit Item', 'sun' ),
+			'update_item'           => __( 'Update Item', 'sun' ),
+			'view_item'             => __( 'View Item', 'sun' ),
+			'view_items'            => __( 'View Items', 'sun' ),
+			'search_items'          => __( 'Search Item', 'sun' ),
+			'not_found'             => __( 'Not found', 'sun' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'sun' ),
+			'featured_image'        => __( 'Featured Image', 'sun' ),
+			'set_featured_image'    => __( 'Set featured image', 'sun' ),
+			'remove_featured_image' => __( 'Remove featured image', 'sun' ),
+			'use_featured_image'    => __( 'Use as featured image', 'sun' ),
+			'insert_into_item'      => __( 'Insert into item', 'sun' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this item', 'sun' ),
+			'items_list'            => __( 'Items list', 'sun' ),
+			'items_list_navigation' => __( 'Items list navigation', 'sun' ),
+			'filter_items_list'     => __( 'Filter items list', 'sun' ),
+		);
+		$args = array(
+			'label'                 => __( 'מכרזים', 'sun' ),
+			'description'           => __( 'מכרזים', 'sun' ),
+			'labels'                => $labels,
+			'supports'              => array( 'title', 'editor', 'thumbnail' ),
+			'taxonomies'            => array( 'tender_cat', 'tender_status' ),
+			'hierarchical'          => false,
+			'public'                => true,
+			'show_ui'               => true,
+			'show_in_menu'          => true,
+			'menu_position'         => 5,
+			'show_in_admin_bar'     => true,
+			'show_in_nav_menus'     => true,
+			'can_export'            => true,
+			'has_archive'           => true,
+			'exclude_from_search'   => false,
+			'publicly_queryable'    => true,
+			'capability_type'       => 'page',
+		);
+		register_post_type( 'tender', $args );
+	
+	}
+	add_action( 'init', 'tender_post_type', 0 );
+	
+}
+
+if ( ! function_exists( 'tender_status_taxonomy' ) ) {
+
+	// Register Custom Taxonomy
+	function tender_status_taxonomy() {
+	
+		$labels = array(
+			'name'                       => _x( 'סטטוס מכרז', 'Taxonomy General Name', 'sun' ),
+			'singular_name'              => _x( 'סטטוס מכרז', 'Taxonomy Singular Name', 'sun' ),
+			'menu_name'                  => __( 'סטטוס מכרז', 'sun' ),
+			'all_items'                  => __( 'All Items', 'sun' ),
+			'parent_item'                => __( 'Parent Item', 'sun' ),
+			'parent_item_colon'          => __( 'Parent Item:', 'sun' ),
+			'new_item_name'              => __( 'New Item Name', 'sun' ),
+			'add_new_item'               => __( 'Add New Item', 'sun' ),
+			'edit_item'                  => __( 'Edit Item', 'sun' ),
+			'update_item'                => __( 'Update Item', 'sun' ),
+			'view_item'                  => __( 'View Item', 'sun' ),
+			'separate_items_with_commas' => __( 'Separate items with commas', 'sun' ),
+			'add_or_remove_items'        => __( 'Add or remove items', 'sun' ),
+			'choose_from_most_used'      => __( 'Choose from the most used', 'sun' ),
+			'popular_items'              => __( 'Popular Items', 'sun' ),
+			'search_items'               => __( 'Search Items', 'sun' ),
+			'not_found'                  => __( 'Not Found', 'sun' ),
+			'no_terms'                   => __( 'No items', 'sun' ),
+			'items_list'                 => __( 'Items list', 'sun' ),
+			'items_list_navigation'      => __( 'Items list navigation', 'sun' ),
+		);
+		$args = array(
+			'labels'                     => $labels,
+			'hierarchical'               => true,
+			'public'                     => true,
+			'show_ui'                    => true,
+			'show_admin_column'          => true,
+			'show_in_nav_menus'          => true,
+			'show_tagcloud'              => true,
+		);
+		register_taxonomy( 'tender_status', array( 'tender' ), $args );
+	
+	}
+	add_action( 'init', 'tender_status_taxonomy', 0 );
+	
+}
+
+if ( ! function_exists( 'tender_cat_taxonomy' ) ) {
+
+	// Register Custom Taxonomy
+	function tender_cat_taxonomy() {
+	
+		$labels = array(
+			'name'                       => _x( 'קטגוריות של מכרז', 'Taxonomy General Name', 'sun' ),
+			'singular_name'              => _x( 'קטגוריות של מכרז', 'Taxonomy Singular Name', 'sun' ),
+			'menu_name'                  => __( 'קטגוריות של מכרז', 'sun' ),
+			'all_items'                  => __( 'קטגוריות של מכרז', 'sun' ),
+			'parent_item'                => __( 'Parent Item', 'sun' ),
+			'parent_item_colon'          => __( 'Parent Item:', 'sun' ),
+			'new_item_name'              => __( 'New Item Name', 'sun' ),
+			'add_new_item'               => __( 'Add New Item', 'sun' ),
+			'edit_item'                  => __( 'Edit Item', 'sun' ),
+			'update_item'                => __( 'Update Item', 'sun' ),
+			'view_item'                  => __( 'View Item', 'sun' ),
+			'separate_items_with_commas' => __( 'Separate items with commas', 'sun' ),
+			'add_or_remove_items'        => __( 'Add or remove items', 'sun' ),
+			'choose_from_most_used'      => __( 'Choose from the most used', 'sun' ),
+			'popular_items'              => __( 'Popular Items', 'sun' ),
+			'search_items'               => __( 'Search Items', 'sun' ),
+			'not_found'                  => __( 'Not Found', 'sun' ),
+			'no_terms'                   => __( 'No items', 'sun' ),
+			'items_list'                 => __( 'Items list', 'sun' ),
+			'items_list_navigation'      => __( 'Items list navigation', 'sun' ),
+		);
+		$args = array(
+			'labels'                     => $labels,
+			'hierarchical'               => true,
+			'public'                     => true,
+			'show_ui'                    => true,
+			'show_admin_column'          => true,
+			'show_in_nav_menus'          => true,
+			'show_tagcloud'              => true,
+		);
+		register_taxonomy( 'tender_cat', array( 'tender' ), $args );
+	
+	}
+	add_action( 'init', 'tender_cat_taxonomy', 0 );
+	
+}
+
+if ( ! function_exists( 'tender_type_taxonomy' ) ) {
+
+	// Register Custom Taxonomy
+	function tender_type_taxonomy() {
+	
+		$labels = array(
+			'name'                       => _x( 'תחום המכרז', 'Taxonomy General Name', 'sun' ),
+			'singular_name'              => _x( 'תחום המכרז', 'Taxonomy Singular Name', 'sun' ),
+			'menu_name'                  => __( 'תחום המכרז', 'sun' ),
+			'all_items'                  => __( 'תחום המכרז', 'sun' ),
+			'parent_item'                => __( 'Parent Item', 'sun' ),
+			'parent_item_colon'          => __( 'Parent Item:', 'sun' ),
+			'new_item_name'              => __( 'New Item Name', 'sun' ),
+			'add_new_item'               => __( 'Add New Item', 'sun' ),
+			'edit_item'                  => __( 'Edit Item', 'sun' ),
+			'update_item'                => __( 'Update Item', 'sun' ),
+			'view_item'                  => __( 'View Item', 'sun' ),
+			'separate_items_with_commas' => __( 'Separate items with commas', 'sun' ),
+			'add_or_remove_items'        => __( 'Add or remove items', 'sun' ),
+			'choose_from_most_used'      => __( 'Choose from the most used', 'sun' ),
+			'popular_items'              => __( 'Popular Items', 'sun' ),
+			'search_items'               => __( 'Search Items', 'sun' ),
+			'not_found'                  => __( 'Not Found', 'sun' ),
+			'no_terms'                   => __( 'No items', 'sun' ),
+			'items_list'                 => __( 'Items list', 'sun' ),
+			'items_list_navigation'      => __( 'Items list navigation', 'sun' ),
+		);
+		$args = array(
+			'labels'                     => $labels,
+			'hierarchical'               => true,
+			'public'                     => true,
+			'show_ui'                    => true,
+			'show_admin_column'          => true,
+			'show_in_nav_menus'          => true,
+			'show_tagcloud'              => true,
+		);
+		register_taxonomy( 'tender_type', array( 'tender' ), $args );
+	
+	}
+	add_action( 'init', 'tender_type_taxonomy', 0 );
+	
+}
+
+if ( ! function_exists('project_post_type') ) {
+
+	// Register Custom Post Type
+	function project_post_type() {
+	
+		$labels = array(
+			'name'                  => _x( 'פרוייקט', 'Post Type General Name', 'sun' ),
+			'singular_name'         => _x( 'פרוייקט', 'Post Type Singular Name', 'sun' ),
+			'menu_name'             => __( 'פרוייקט', 'sun' ),
+			'name_admin_bar'        => __( 'פרוייקט', 'sun' ),
+			'archives'              => __( 'Item Archives', 'sun' ),
+			'attributes'            => __( 'Item Attributes', 'sun' ),
+			'parent_item_colon'     => __( 'Parent Item:', 'sun' ),
+			'all_items'             => __( 'All Items', 'sun' ),
+			'add_new_item'          => __( 'Add New Item', 'sun' ),
+			'add_new'               => __( 'Add New', 'sun' ),
+			'new_item'              => __( 'New Item', 'sun' ),
+			'edit_item'             => __( 'Edit Item', 'sun' ),
+			'update_item'           => __( 'Update Item', 'sun' ),
+			'view_item'             => __( 'View Item', 'sun' ),
+			'view_items'            => __( 'View Items', 'sun' ),
+			'search_items'          => __( 'Search Item', 'sun' ),
+			'not_found'             => __( 'Not found', 'sun' ),
+			'not_found_in_trash'    => __( 'Not found in Trash', 'sun' ),
+			'featured_image'        => __( 'Featured Image', 'sun' ),
+			'set_featured_image'    => __( 'Set featured image', 'sun' ),
+			'remove_featured_image' => __( 'Remove featured image', 'sun' ),
+			'use_featured_image'    => __( 'Use as featured image', 'sun' ),
+			'insert_into_item'      => __( 'Insert into item', 'sun' ),
+			'uploaded_to_this_item' => __( 'Uploaded to this item', 'sun' ),
+			'items_list'            => __( 'Items list', 'sun' ),
+			'items_list_navigation' => __( 'Items list navigation', 'sun' ),
+			'filter_items_list'     => __( 'Filter items list', 'sun' ),
+		);
+		$args = array(
+			'label'                 => __( 'פרוייקט', 'sun' ),
+			'description'           => __( 'פרוייקט', 'sun' ),
+			'labels'                => $labels,
+			'supports'              => array( 'title', 'editor', 'thumbnail' ),
+			'hierarchical'          => false,
+			'public'                => true,
+			'show_ui'               => true,
+			'show_in_menu'          => true,
+			'menu_position'         => 5,
+			'menu_icon'             => 'dashicons-database',
+			'show_in_admin_bar'     => true,
+			'show_in_nav_menus'     => true,
+			'can_export'            => true,
+			'has_archive'           => true,
+			'exclude_from_search'   => false,
+			'publicly_queryable'    => true,
+			'capability_type'       => 'page',
+		);
+		register_post_type( 'project', $args );
+	
+	}
+	add_action( 'init', 'project_post_type', 0 );
+	
+}

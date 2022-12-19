@@ -66,6 +66,14 @@ $logo = get_field( 'logo', 'options' );
 				</div>
 			<?php endif; ?>
 
+			<div class="mobile-menu-toggle mobile-only">
+				<button type="button">
+					<div class="a"></div>
+					<div class="b"></div>
+					<div class="c"></div>
+				</button>
+			</div>
+
 			<div class="menu-wrapper">
 				<?php header_menu(); ?>
 			</div>

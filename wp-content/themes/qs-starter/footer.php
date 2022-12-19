@@ -42,7 +42,10 @@ $facebook_url = get_field( 'facebook_url', 'option' );
 				</div>
 				<?php foreach( $footer_menus as $footer_menu ) : $i++; ?>
 					<div class="footer-column col-<?php echo $i; ?> menu-column">
-						<div class="menu-title"><?php echo esc_html( $footer_menu['title'] ); ?></div>
+						<div class="menu-title">
+							<?php echo esc_html( $footer_menu['title'] ); ?>
+							<button class="mobile-only footer-menu-toggle"></button>
+						</div>
 						<?php 
 							wp_nav_menu(
 								array(
@@ -54,7 +57,10 @@ $facebook_url = get_field( 'facebook_url', 'option' );
 					</div>
 				<?php endforeach; ?>
 				<div class="footer-column col-5 col-contacts">
-					<div class="menu-title">פרטי יצירת קשר עם התאגית</div>
+					<div class="menu-title">
+						פרטי יצירת קשר עם התאגית
+						<button class="mobile-only footer-menu-toggle"></button>
+					</div>
 					<div class="contact-details">
 						<?php echo wp_kses_post($footer_contact_details); ?>
 						<?php if( $facebook_url ) : ?>
@@ -67,6 +73,8 @@ $facebook_url = get_field( 'facebook_url', 'option' );
 					</div>
 				</div>
 			</div>
+
+			<button class="mobile-only go-up"></button>
 		</div>
 
 	</div>
@@ -84,8 +92,12 @@ $facebook_url = get_field( 'facebook_url', 'option' );
 
 </div>
 
-<?php get_template_part( 'inc/global/floating', 'form' ); ?>
-
+<?php 
+	get_template_part( 'inc/global/floating', 'form' );
+	if( ! is_front_page() && ! is_home() ) {
+		get_template_part( 'inc/global/mobile', 'button' ); 
+	}
+?>
 <?php wp_footer(); ?>
 </body>
 </html>

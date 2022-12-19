@@ -6,7 +6,7 @@
  */
 
 // Remove admin bar.
-// add_filter('show_admin_bar', '__return_false');.
+add_filter('show_admin_bar', '__return_false');
 
 add_filter('doing_it_wrong_trigger_error', function () {return false;}, 10, 0);
 
@@ -26,11 +26,11 @@ if ( function_exists( 'add_theme_support' ) ) {
 	add_image_size( 'home-news', 372, 287, true );
 	add_image_size( 'contact-video-cover', 568, 322, true );
 	add_image_size( 'related', 269, 152, true );
+	add_image_size( 'single-project', 600, 376, true );
 	// Theme Support fot yoast.
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'html5', array( 'gallery', 'script', 'style' ) );
-
 }
 
 // Remove default galleries css style.

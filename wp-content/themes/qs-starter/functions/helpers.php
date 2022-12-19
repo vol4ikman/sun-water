@@ -319,3 +319,60 @@ function sun_get_user_ip(){
     }
     return $ip;
 }
+
+function get_tender_ids(){
+	global $post;
+	$tender_ids = array();
+	$args = array(
+		'post_type' 	 => 'tender',
+		'posts_per_page' => -1
+	);
+	$tenders = new WP_Query( $args );
+	if( $tenders->have_posts() ) {
+		while( $tenders->have_posts() ) : $tenders->the_post();
+			$tender_ids[$post->ID] = array(
+				'title' 		=> get_the_title($post->ID),
+				'tender_id' 	=> get_field( 'tender_id', $post->ID ),
+				'start_publish' => get_field( 'start_publish', $post->ID )
+			);
+		endwhile; wp_reset_postdata();
+	}
+
+	return $tender_ids;
+
+}
+
+function get_tenders( $params = array() ){
+	$args = array(
+		'post_type' => 'tender',
+	);
+
+	if( ! $params['posts_per_page'] ) {
+		$args['posts_per_page'] = 10;
+	}
+
+	if( isset( $params['tender_cat_id'] ) && $params['tender_cat_id'] ) {
+		$args['tax_query'][] = array(
+			'taxonomy'	=> 'tender_cat',
+			'terms' 	=> array($params['tender_cat_id']),
+		);
+	}
+
+	
+	if( isset( $params['tender_id'] ) && $params['tender_id'] ) {
+		$args['meta_query']['relation'] = 'AND';
+		$args['meta_query'][] = array(
+			'key'	=> 'tender_id',
+			'value' => $params['tender_id'],
+			'compare' => '=',
+		);
+	}
+	if( isset( $params['tender_name'] ) && $params['tender_name'] ) {
+		$args['post__in'] = array( $params['tender_name'] );
+	}
+	
+
+	$tenders = new WP_Query( $args );
+
+	return $tenders;
+}

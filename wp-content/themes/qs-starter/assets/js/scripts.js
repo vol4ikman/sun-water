@@ -86,6 +86,45 @@ jQuery(document).ready(function () {
 		e.preventDefault();
 		jQuery(".floating-form-wrapper").toggleClass("active");
 	});
+
+	jQuery(".tenders-filter select").niceSelect();
+
+	jQuery(".datepicker").datepicker();
+
+	jQuery(".call-gravity-form").magnificPopup({
+		type: "inline",
+		preloader: false,
+	});
+
+	jQuery(".contact-tender-boss").on("click", function (e) {
+		e.preventDefault();
+		jQuery.magnificPopup.open({
+			items: {
+				src: "#contact-tender-boss-form",
+			},
+			type: "inline",
+		});
+	});
+
+	if (jQuery(window).width() < 640) {
+		init_mobile_functions();
+	}
+
+	jQuery(".go-up").click(function (e) {
+		e.preventDefault();
+		jQuery("html, body").animate({ scrollTop: "0" });
+	});
+});
+
+jQuery(window).scroll(function () {
+	var sticky = jQuery(".go-up"),
+		scroll = jQuery(window).scrollTop();
+
+	if (scroll >= 500) {
+		sticky.addClass("visible");
+	} else {
+		sticky.removeClass("visible");
+	}
 });
 
 function init_builder_gallery_slider() {
@@ -109,10 +148,21 @@ function init_builder_gallery_slider() {
 	}
 }
 
+function init_mobile_functions() {
+	jQuery("footer.footer .menu-title").click(function (e) {
+		e.preventDefault();
+		jQuery(this).parents(".footer-column").toggleClass("active");
+	});
+}
+
 function init_news_bar() {
 	if (jQuery("#news-bar").length && jQuery(".twitter-scroll").length) {
+		var news_speed = 20000;
+		if (jQuery(window).width() < 480) {
+			news_speed = 5000;
+		}
 		var news_bar = jQuery(".twitter-scroll").marquee({
-			duration: 20000,
+			duration: news_speed,
 			pauseOnHover: false,
 			direction: "right",
 		});
@@ -146,10 +196,23 @@ function init_home_news_slider() {
 		autoplay: slider_autoplay,
 		slidesPerView: 4,
 
-		// // Navigation arrows
+		// Navigation arrows
 		navigation: {
 			nextEl: "#home-news-section .swiper-button-next",
 			prevEl: "#home-news-section .swiper-button-prev",
+		},
+		breakpoints: {
+			// min width
+			360: {
+				slidesPerView: 1,
+				spaceBetween: 20,
+				centeredSlides: true,
+				initialSlide: 2,
+			},
+			1024: {
+				slidesPerView: 4,
+				spaceBetween: 20,
+			},
 		},
 	});
 }
