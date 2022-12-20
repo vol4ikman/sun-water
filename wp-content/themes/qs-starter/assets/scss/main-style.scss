@@ -3136,10 +3136,43 @@ html[dir=rtl] .gform_wrapper.gravity-theme .gfield_required {
 	cursor: pointer;
 }
 
+.mobile-bottom-section {
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	position: fixed;
+	background-color: $white;
+	border-top: 2px solid #FDD207;
+	box-shadow: 0px 0px 8px rgba(37, 81, 151, 0.25);
+}
+
 .mobile-section-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 21px 23px 17px 23px;
+
 	button {
+		border: 0;
+		background: none;
+		padding: 0;
+		position: relative;
+		@include flexbox();
+		align-items: center;
+
 		.icon {
 			display: inline-block;
+		}
+
+		.title {
+			font-weight: 600;
+			font-size: 16px;
+			color: #255197;
+		}
+
+		&.mobile-actions-call,
+		&.mobile-search-call {
+			width: 115px;
 		}
 
 		&.mobile-actions-call {
@@ -3147,6 +3180,7 @@ html[dir=rtl] .gform_wrapper.gravity-theme .gfield_required {
 				background: url(../../images/mobile-actions.png) no-repeat center;
 				width: 18px;
 				height: 18px;
+				margin-left: 10px;
 			}
 		}
 
@@ -3155,15 +3189,20 @@ html[dir=rtl] .gform_wrapper.gravity-theme .gfield_required {
 				background: url(../../images/mobile-search.png) no-repeat center;
 				width: 20px;
 				height: 20px;
+				margin-left: 10px;
 			}
 		}
 
 		&.mobile-sharer-call {
+			width: 59px;
+
 			.icon {
 				background: url(../../images/mobile-center-close.png) no-repeat center;
 				width: 59px;
 				height: 59px;
-
+				position: absolute;
+				top: -45px;
+				right: 0;
 			}
 		}
 	}

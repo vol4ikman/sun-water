@@ -143,6 +143,15 @@ function init_builder_gallery_slider() {
 					nextEl: jQuery(val).find(".swiper-button-next"),
 					prevEl: jQuery(val).find(".swiper-button-prev"),
 				},
+				breakpoints: {
+					// min width
+					360: {
+						slidesPerView: 1,
+					},
+					1024: {
+						slidesPerView: 2,
+					},
+				},
 			});
 		});
 	}

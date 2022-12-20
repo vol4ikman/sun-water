@@ -14,6 +14,7 @@ if( ! wp_is_mobile() ) {
 
 <div class="mobile-bottom-section">
 	<div class="mobile-section-inner">
+
 		<button class="caller mobile-actions-call" data-target="mobile-actions-call-init">
 			<span class="icon"></span>
 			<span class="title">פעולות נפוצות</span>
@@ -21,13 +22,13 @@ if( ! wp_is_mobile() ) {
 
 		<button class="caller mobile-sharer-call">
 			<span class="icon"></span>
-			<span class="title"></span>
 		</button>
 
 		<button class="caller mobile-search-call">
 			<span class="icon"></span>
 			<span class="title">חיפוש</span>
 		</button>
+		
 	</div>
 
 	<div id="mobile-actions-call-init" class="mobile-actions-wrapper">
